@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"sort"
 	"strconv"
 )
 
@@ -32,12 +33,21 @@ func nextInt() int {
 	}
 	return i
 }
+func nextF64() float64 {
+	sc.Scan()
+
+	i, e := strconv.ParseFloat(sc.Text(), 64)
+	if e != nil {
+		panic(e)
+	}
+	return i
+}
 
 func main() {
 	sc.Split(bufio.ScanWords) // スペース区切りの場合使用
 	string := nextLine()
 	int := nextInt()
-
 	fmt.Print(string, int)
+	sort.SliceStable(words, func(i, j int) bool { return words[i] < words[j] })
 
 }
